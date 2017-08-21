@@ -1,0 +1,48 @@
+{
+  "dependencies": {
+    "edge-diagnostics-adapter": "file:../edge-diagnostics-adapter"
+  },
+  "description": "Connector to use edge diagnostics adapter",
+  "devDependencies": {
+    "@sonarwhal/sonar": "^0.3.0",
+    "eslint": "^4.0.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-markdown": "^1.0.0-beta.7",
+    "eslint-plugin-typescript": "^0.3.0",
+    "markdownlint-cli": "^0.3.1",
+    "npm-run-all": "^4.0.2",
+    "ts-node": "^3.1.0",
+    "typedoc": "^0.8.0",
+    "typescript": "^2.4.1",
+    "typescript-eslint-parser": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    ".sonarrc",
+    "dist/src"
+  ],
+  "keywords": [
+    "a11y",
+    "accessibility",
+    "best-practices",
+    "interoperability",
+    "lint",
+    "performance",
+    "security"
+  ],
+  "license": "Apache-2.0",
+  "main": "./dist/src/lib/index.js",
+  "name": "@sonarwhal/edge15-connector",
+  "repository": "sonarwhal/edge15-connector",
+  "scripts": {
+    "build": "npm run lint && npm run clean && tsc --outDir dist",
+    "clean": "rimraf dist",
+    "lint": "npm-run-all lint:*",
+    "lint:ts": "eslint --ext md --ext ts --ignore-pattern dist/* .",
+    "lint:md": "markdownlint README.md",
+    "watch": "npm run build -- --watch"
+  },
+  "version": "0.1.0"
+}
