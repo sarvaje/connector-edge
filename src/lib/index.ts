@@ -1,7 +1,7 @@
 /**
- * @fileoverview Edge Diagnostics Adapter connector for sonar
+ * @fileoverview Edge Diagnostics Adapter connector for sonar.
  */
 
-import * as eda from './connectors/edge15-connector/edge15-connector';
+import * as eda from './connectors/connector-edge15/connector-edge15';
 
 module.exports = eda;
