@@ -7,24 +7,29 @@
 
 /* eslint-disable no-sync */
 
-import { ChildProcess, spawn, exec } from 'child_process'; // eslint-disable-line no-unused-vars
+import { spawn } from 'child_process';
 import * as fs from 'fs';
 import * as net from 'net';
 import * as os from 'os';
 import * as path from 'path';
+import { promisify } from 'util';
 
 import { debug as d } from '@sonarwhal/sonar/dist/src/lib/utils/debug';
 import { delay } from '@sonarwhal/sonar/dist/src/lib/utils/misc';
-import { Launcher } from '@sonarwhal/sonar/dist/src/lib/connectors/shared/launcher';
+import { Launcher } from '@sonarwhal/sonar/dist/src/lib/connectors/debugging-protocol-common/launcher';
 import * as logging from '@sonarwhal/sonar/dist/src/lib/utils/logging';
-import { BrowserInfo, LauncherOptions } from '@sonarwhal/sonar/dist/src/lib/types'; // eslint-disable-line no-unused-vars
+import { BrowserInfo, LauncherOptions } from '@sonarwhal/sonar/dist/src/lib/types';
+import * as nodeWindows from 'node-windows';
+
+const diagnosticsPath = require.resolve('edge-diagnostics-adapter');
+const elevate = promisify(nodeWindows.elevate);
 
 const debug = d(__filename);
 
 export class EdgeLauncher extends Launcher {
     private retryDelay: number = 500;
 
-    constructor(options: LauncherOptions) {
+    public constructor(options: LauncherOptions) {
         super(options);
     }
 
@@ -39,7 +44,7 @@ export class EdgeLauncher extends Launcher {
     /** Checks if the debugger is ready by trying to connect to the default port. */
     private isDebuggerReady(): Promise<{}> {
         return new Promise((resolve, reject) => {
-            const client = net.createConnection((this as any).port);
+            const client = net.createConnection(this.port);
 
             client.once('error', (err) => {
                 this.cleanup(client);
@@ -141,15 +146,7 @@ export class EdgeLauncher extends Launcher {
         const [isEdgeAdapterRunning, isEdgeRunning] = await this.checkIfRunning(['edgeAdapter.js', 'MicrosoftEdge.exe']);
 
         if (!isEdgeAdapterRunning) {
-            const diagnosticsPath = require.resolve('edge-diagnostics-adapter');
-            const outFile = fs.openSync(path.join(process.cwd(), 'edge-out.log'), 'a');
-            const errFile = fs.openSync(path.join(process.cwd(), 'edge-err.log'), 'a');
-            const child = spawn('C:\\Program Files\\nodejs\\node.exe', [diagnosticsPath, '--servetools', '--diagnostics', `--port=${(this as any).port}`], {
-                detached: true,
-                stdio: ['ignore', outFile, errFile]
-            });
-
-            child.unref();
+            await elevate(`"${process.execPath}" ${diagnosticsPath} --servetools --diagnostics --port=${this.port}`, {});
         }
 
         await this.waitUntilReady();
@@ -171,14 +168,14 @@ export class EdgeLauncher extends Launcher {
             return {
                 isNew: true,
                 pid: -1,
-                port: (this as any).port
+                port: this.port
             };
         }
 
         return {
             isNew: false,
             pid: -1,
-            port: (this as any).port
+            port: this.port
         };
     }
 }

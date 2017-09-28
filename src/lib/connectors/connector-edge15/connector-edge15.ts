@@ -7,15 +7,14 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-import { AsyncHTMLDocument, AsyncHTMLElement } from '@sonarwhal/sonar/dist/src/lib/connectors/shared/async-html'; // eslint-disable-line no-unused-vars
-import { Connector } from '@sonarwhal/sonar/dist/src/lib/connectors/shared/remote-debugging-connector';
-import { IConnector, IConnectorBuilder, ILauncher } from '@sonarwhal/sonar/dist/src/lib/types'; // eslint-disable-line no-unused-vars
+import { Connector } from '@sonarwhal/sonar/dist/src/lib/connectors/debugging-protocol-common/debugging-protocol-connector';
+import { IConnector, IConnectorBuilder, ILauncher } from '@sonarwhal/sonar/dist/src/lib/types';
 import { EdgeLauncher } from './connector-edge15-launcher';
 
-import { Sonar } from '@sonarwhal/sonar/dist/src/lib/sonar'; // eslint-disable-line no-unused-vars
+import { Sonar } from '@sonarwhal/sonar/dist/src/lib/sonar';
 
 class EdgeConnector extends Connector {
-    constructor(server: Sonar, config: object, launcher: ILauncher) {
+    public constructor(server: Sonar, config: object, launcher: ILauncher) {
         super(server, config, launcher);
     }
 }
