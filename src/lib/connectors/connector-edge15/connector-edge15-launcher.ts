@@ -14,11 +14,11 @@ import * as os from 'os';
 import * as path from 'path';
 import { promisify } from 'util';
 
-import { debug as d } from '@sonarwhal/sonar/dist/src/lib/utils/debug';
-import { delay } from '@sonarwhal/sonar/dist/src/lib/utils/misc';
-import { Launcher } from '@sonarwhal/sonar/dist/src/lib/connectors/debugging-protocol-common/launcher';
-import * as logging from '@sonarwhal/sonar/dist/src/lib/utils/logging';
-import { BrowserInfo, LauncherOptions } from '@sonarwhal/sonar/dist/src/lib/types';
+import { debug as d } from 'sonarwhal/dist/src/lib/utils/debug';
+import { delay } from 'sonarwhal/dist/src/lib/utils/misc';
+import { Launcher } from 'sonarwhal/dist/src/lib/connectors/debugging-protocol-common/launcher';
+import * as logging from 'sonarwhal/dist/src/lib/utils/logging';
+import { BrowserInfo, LauncherOptions } from 'sonarwhal/dist/src/lib/types';
 import * as nodeWindows from 'node-windows';
 
 const diagnosticsPath = require.resolve('edge-diagnostics-adapter');
