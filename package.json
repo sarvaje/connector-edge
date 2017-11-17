@@ -1,22 +1,21 @@
 {
   "dependencies": {
-    "edge-diagnostics-adapter": "git+https://github.com/Microsoft/edge-diagnostics-adapter.git#update-dependencies",
+    "edge-diagnostics-adapter": "^0.6.0",
     "node-windows": "^0.1.14"
   },
   "description": "sonarwhal connector for Microsoft Edge",
   "devDependencies": {
     "sonarwhal": "0.16.0",
     "@types/debug": "0.0.30",
-    "eslint": "^4.7.2",
+    "eslint": "^4.11.0",
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-markdown": "^1.0.0-beta.7",
-    "eslint-plugin-typescript": "^0.7.0",
-    "markdownlint-cli": "^0.3.1",
+    "eslint-plugin-markdown": "^1.0.0-beta.6",
+    "eslint-plugin-typescript": "^0.8.0",
+    "markdownlint-cli": "^0.5.0",
     "npm-run-all": "^4.1.1",
     "ts-node": "^3.3.0",
-    "typedoc": "^0.8.0",
     "typescript": "^2.5.3",
-    "typescript-eslint-parser": "^8.0.0"
+    "typescript-eslint-parser": "^9.0.0"
   },
   "peerDependencies": {
     "sonarwhal": "^0.16.0"
