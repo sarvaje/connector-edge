@@ -92,7 +92,7 @@ export class EdgeLauncher extends Launcher {
     }
 
     /**
-     * Test if we are running sonar in a Windows 10 machine
+     * Test if we are running sonarwhal in a Windows 10 machine
      */
     private isWin10() {
         return {

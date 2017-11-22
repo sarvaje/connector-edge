@@ -1,26 +1,25 @@
-# Edge 15 connector
+# Edge connector
 
 A connector to use [edge diagnostics adapter](https://github.com/Microsoft/edge-diagnostics-adapter)
-in `sonar`.
+in `sonarwhal`.
 
 ## Installation
 
-First, you need to install [`sonar`](https://sonarwhal.com/):
+First, you need to install [`sonarwhal`](https://sonarwhal.com/):
 
 ```bash
-npm install -g @sonarwhal/sonar
+npm install sonarwhal
 ```
 
 Then, install the new connector:
 
 ```bash
-npm install -g @sonarwhal/connector-edge15
+npm install @sonarwhal/connector-edge
 ```
 
 ## Known issues
 
-* To run this connector you need to open the command line
-  as an administrator.
+* This connector needs run as Administrator.
 * `onLoadingFailed` event is not dispatched.
 * `Security` is not implemented.
 * Edge has to open a URL by default so, before navigate,
@@ -32,12 +31,12 @@ npm install -g @sonarwhal/connector-edge15
 
 ## Usage
 
-Configure the connector name in your `.sonarrc` configuration file:
+Configure the connector name in your `.sonarwhalrc` configuration file:
 
 ```json
 {
     "connector": {
-        "name": "edge15-connector"
+        "name": "connector-edge"
     }
 }
 ```
@@ -48,7 +47,7 @@ browser or tab:
 ```json
 {
     "connector": {
-        "name": "edge15-connector",
+        "name": "connector-edge",
         "options": {
             "useTabUrl": true,
             "tabUrl": "https://empty.sonarwhal.com/"
