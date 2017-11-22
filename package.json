@@ -13,7 +13,7 @@
     "eslint-plugin-typescript": "^0.8.0",
     "markdownlint-cli": "^0.5.0",
     "npm-run-all": "^4.1.1",
-    "sonarwhal": "0.16.0",
+    "sonarwhal": "^0.16.0",
     "ts-node": "^3.3.0",
     "typescript": "^2.5.3",
     "typescript-eslint-parser": "^9.0.0"
@@ -30,14 +30,14 @@
   "keywords": [
     "connector",
     "edge",
-    "sonar",
-    "sonar-connector"
+    "sonarwhal",
+    "sonarwhal-connector"
   ],
   "license": "Apache-2.0",
   "main": "./dist/src/lib/index.js",
-  "name": "@sonarwhal/connector-edge15",
+  "name": "@sonarwhal/connector-edge",
   "private": true,
-  "repository": "sonarwhal/connector-edge15",
+  "repository": "sonarwhal/connector-edge",
   "scripts": {
     "build": "npm run lint && npm run clean && tsc --outDir dist",
     "clean": "rimraf dist",

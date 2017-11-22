@@ -9,7 +9,7 @@
 
 import { Connector } from 'sonarwhal/dist/src/lib/connectors/debugging-protocol-common/debugging-protocol-connector';
 import { IConnector, IConnectorBuilder, ILauncher } from 'sonarwhal/dist/src/lib/types';
-import { EdgeLauncher } from './connector-edge15-launcher';
+import { EdgeLauncher } from './connector-edge-launcher';
 
 import { Sonarwhal } from 'sonarwhal/dist/src/lib/sonarwhal';
 
