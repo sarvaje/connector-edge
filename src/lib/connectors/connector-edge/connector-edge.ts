@@ -20,8 +20,13 @@ class EdgeConnector extends Connector {
 }
 
 const builder: IConnectorBuilder = (server: Sonarwhal, config): IConnector => {
-    const launcher = new EdgeLauncher(config);
-    const collector = new EdgeConnector(server, config, launcher);
+    const edgeRequiredConfig = {
+        tabUrl: 'https://empty.sonarwhal.com/',
+        useTabUrl: true
+    };
+    const edgeConfig = Object.assign({}, edgeRequiredConfig, config);
+    const launcher = new EdgeLauncher(edgeConfig);
+    const collector = new EdgeConnector(server, edgeConfig, launcher);
 
     return collector;
 };
